@@ -28,7 +28,7 @@ jobs:
       with:
         to: ${{ secrets.TELEGRAM_TO }}
         token: ${{ secrets.TELEGRAM_TOKEN }}
-        TELEGRAM_MESSAGE: ${{join(steps.run_tests.outputs.*, '\n')}}
+        message: ${{join(steps.run_tests.outputs.*, '\n')}}
       env:
         TELEGRAM_TO: ${{ secrets.TELEGRAM_TO }}
         TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
