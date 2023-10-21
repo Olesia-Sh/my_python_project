@@ -20,8 +20,7 @@ jobs:
       
     - name: Run tests
       run: python3 -m unittest discover tests 2>&1 | tee ./output.txt
-      #run: echo $1 >> "$GITHUB_OUTPUT"
-
+     
     - name: send default message
       uses: appleboy/telegram-action@master
       
