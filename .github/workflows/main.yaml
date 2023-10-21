@@ -12,10 +12,8 @@ jobs:
       contents: write
     steps:
     - name: Setup Python
-      uses: actions/setup-python@v4
-      with:
-        python version: '3.10'
-
+      uses: actions/setup-python@v3
+      
     - name: Run tests
       run: python3 -m unittest discover tests >> echo
       #run: echo $1 >> "$GITHUB_OUTPUT"
