@@ -19,7 +19,7 @@ jobs:
       run: pwd && ls -lah
       
     - name: Run tests
-      run: python3 -m unittest discover tests >> $GITHUB_OUTPUT
+      run: python3 -m unittest discover tests >> $GITHUB_OUTPUT >> output.txt
       #run: echo $1 >> "$GITHUB_OUTPUT"
 
     - name: send default message
@@ -28,7 +28,7 @@ jobs:
       with:
         to: ${{ secrets.TELEGRAM_TO }}
         token: ${{ secrets.TELEGRAM_TOKEN }}
-        message: ${{join(steps.run_tests.outputs.*, '\n')}}
+        message: output.txt
       env:
         TELEGRAM_TO: ${{ secrets.TELEGRAM_TO }}
         TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
