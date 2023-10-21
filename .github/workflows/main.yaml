@@ -13,6 +13,7 @@ jobs:
     steps:
     - name: Setup Python
       uses: actions/setup-python@v2
+    - name: Install selenium
       run: pip install selenium
       
     - name: Run tests
