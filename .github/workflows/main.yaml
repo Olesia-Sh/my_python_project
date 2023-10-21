@@ -13,8 +13,8 @@ jobs:
     steps:
     - name: Setup Python
       uses: actions/setup-python@v2
-    - name: Install selenium
-      run: python -m pip --version && python -m pip install requests
+    - name: Discover server
+      run: pwd && ls -lah
       
     - name: Run tests
       run: python3 -m unittest discover tests
