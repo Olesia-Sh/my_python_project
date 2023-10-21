@@ -19,11 +19,18 @@ jobs:
       run: pwd && ls -lah
       
     - name: Run tests
-      run: python3 -m unittest discover tests >> $1
+      run: python3 -m unittest discover tests >> $GITHUB_OUTPUT
       #run: echo $1 >> "$GITHUB_OUTPUT"
 
     - name: send default message
       uses: appleboy/telegram-action@master
+      
       with:
         to: ${{ secrets.TELEGRAM_TO }}
         token: ${{ secrets.TELEGRAM_TOKEN }}
+        TELEGRAM_MESSAGE: ${{join(steps.run_tests.outputs.*, '\n')}}
+      env:
+        TELEGRAM_TO: ${{ secrets.TELEGRAM_TO }}
+        TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+      
+        
