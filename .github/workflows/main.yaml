@@ -1,0 +1,27 @@
+name: Build and Test
+
+on: 
+  push:
+    branches: [main]
+
+jobs:
+
+  build-and-test:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python version: '3.10'
+
+    - name: Run tests
+      run: python3 -m unittest discover tests/tests_main.py >> $1
+      output: echo "$1"
+
+    - name: send default message
+      uses: appleboy/telegram-action@master
+      with:
+        to: ${{ secrets.TELEGRAM_TO }}
+        token: ${{ secrets.TELEGRAM_TOKEN }}
