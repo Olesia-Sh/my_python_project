@@ -13,6 +13,7 @@ jobs:
     steps:
     - name: Setup Python
       uses: actions/setup-python@v2
+      run: pip install selenium
       
     - name: Run tests
       run: python -m unittest discover tests >> echo
