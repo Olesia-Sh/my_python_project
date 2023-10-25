@@ -19,14 +19,13 @@ jobs:
       run: pwd && ls -lah
       
     - name: Run tests
-      run: python3 -m unittest discover tests 2>&1 | tee ./output.txt
-      id: step1
+      run: |
+      python3 -m unittest discover tests
 
-    - name: Read output
-      run: echo "${{ steps.step1.outputs.out }}"
-      if: failure()
-      
-    - name: send default message
+    - if: ${{ failure() }}
+      run: python3 -m unittest discover tests 2>&1 | tee ./output.txt
+           
+      name: send default message
       uses: appleboy/telegram-action@master
       
       with:
