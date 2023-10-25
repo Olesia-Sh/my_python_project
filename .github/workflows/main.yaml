@@ -20,7 +20,11 @@ jobs:
       
     - name: Run tests
       run: python3 -m unittest discover tests 2>&1 | tee ./output.txt
-      continue-on-error: false
+      id: step1
+
+    - name: Read output
+      run: echo "${{ steps.step1.outputs.out }}"
+      if: failure()
       
     - name: send default message
       uses: appleboy/telegram-action@master
